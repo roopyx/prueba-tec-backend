@@ -1,6 +1,6 @@
 from utils.db import db
 
-class Form(db.model):
+class Form(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   expansion = db.Column(db.String(100))
   fecha = db.Column(db.Date)
