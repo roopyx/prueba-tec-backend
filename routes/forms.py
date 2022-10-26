@@ -23,4 +23,7 @@ def new_form():
 
 @forms.route("/filter/date")
 def filter_date():
-  return 'FIlter date'
+  mes = request.args.get('mes')
+  año = request.args.get('año') 
+  formsFilter = Form.query(Form).filter(Form.fecha)
+  return formsFilter
