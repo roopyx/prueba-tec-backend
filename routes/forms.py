@@ -27,17 +27,19 @@ def new_form():
 @forms.route("/filter/date", methods=['GET'])
 def filter_date():
   dict_forms = {}
+  lista_dict_forms = []
+  
   mes = request.args.get('mes')
   año = request.args.get('año') 
+  
   formsFilter = Form.query.filter(extract('year', Form.fecha)==año).filter(extract('month', Form.fecha)==mes).all()
+
   for row in formsFilter:
     dict_forms["id"] = row.id
     dict_forms["expansion"] = row.expansion
     dict_forms["fecha"] = str(row.fecha)
     dict_forms["destino"] = row.destino
     dict_forms["tonelaje"] = row.tonelaje
-    print(json.dumps(dict_forms))
-  print(dict_forms)
-  return 'lsl'
-
-
+    lista_dict_forms.append(json.dumps(dict_forms))
+  
+  return lista_dict_forms
