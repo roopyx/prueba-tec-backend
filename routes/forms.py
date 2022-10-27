@@ -1,10 +1,10 @@
-from ast import Try
-from asyncio import tasks
+from array import array
 from flask import Blueprint, request
 from models.form import Form
 from utils.db import db
 from sqlalchemy import extract
 import json
+import ast
 
 forms = Blueprint('forms', __name__)
 
@@ -40,6 +40,6 @@ def filter_date():
     dict_forms["fecha"] = str(row.fecha)
     dict_forms["destino"] = row.destino
     dict_forms["tonelaje"] = row.tonelaje
-    lista_dict_forms.append(json.dumps(dict_forms))
-  
+    lista_dict_forms.append(dict_forms.copy())
+
   return lista_dict_forms
