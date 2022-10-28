@@ -17,6 +17,9 @@ def new_form():
     destino = request_form['destino']
     tonelaje = request_form['tonelaje']
 
+    if expansion == '' or fecha == '' or destino == '' or tonelaje == '':
+      return abort(400)
+
     new_form = Form(expansion, fecha, destino, tonelaje)
 
     db.session.add(new_form)
@@ -39,6 +42,9 @@ def filter_date():
     mes = request.args.get('mes')
     año = request.args.get('año') 
     
+    if mes == '' or año == '':
+      return abort(400)
+
     formsFilter = Form.query.filter(extract('year', Form.fecha)==año).filter(extract('month', Form.fecha)==mes).all()
 
     for row in formsFilter:
